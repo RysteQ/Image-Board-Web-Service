@@ -10,7 +10,7 @@ public class ImageController : ControllerBase
     [HttpGet("images/{id}")]
     [ProducesResponseType<string>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult GetImage(int id) // TODO
+    public IActionResult GetImage(int id)
     {
         return Ok();
     }
@@ -23,10 +23,10 @@ public class ImageController : ControllerBase
         return Ok();
     }
 
-    [HttpPut("images/")] // TODO
+    [HttpPut("images/")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult PutImage() // TODO
+    public IActionResult PutImage(FormFile file)
     {
         return Ok();
     }

@@ -10,24 +10,24 @@ public class ImageReviewController : ControllerBase
     [HttpGet("images/reviews/{id}")]
     [ProducesResponseType<ImageReviewModel>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public void GetImageReviews(int id)
+    public IActionResult GetImageReviews(int id)
     {
-
+        return Ok();
     }
 
     [HttpPost("images/reviews/{id}/rate/{score}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public void PostImageRating(int score)
+    public IActionResult PostImageRating(int score)
     {
-
+        return Ok();
     }
 
     [HttpPost("images/reviews/{id}/comment/{comment}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public void PostImageComment(int id, string comment)
+    public IActionResult PostImageComment(int id, string comment)
     {
-
+        return Ok();
     }
 }
