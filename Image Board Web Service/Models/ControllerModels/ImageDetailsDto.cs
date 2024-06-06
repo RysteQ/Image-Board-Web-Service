@@ -1,6 +1,6 @@
-﻿namespace Image_Board_Web_Service.Models;
+﻿namespace Image_Board_Web_Service.Models.ControllerModels;
 
-public record ImageDetailsModel
+public record ImageDetailsDto
 {
     public required int Id { get; init; }
     public required string Filename { get; init; }
