@@ -58,7 +58,7 @@ public class ImageReviewController : ControllerBase
         return NotFound($"There is not a file with the ID {id}");
     }
 
-    [HttpPost("{id}/rate/{score}")]
+    [HttpPost("{id}/ratings/new/{score}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult PostImageRating(int id, int rating)
@@ -84,7 +84,7 @@ public class ImageReviewController : ControllerBase
         return NotFound($"There is not a file with the ID {id}");
     }
 
-    [HttpPost("{id}/comment/{comment}")]
+    [HttpPost("{id}/comments/new/{comment}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult PostImageComment(int id, string comment)

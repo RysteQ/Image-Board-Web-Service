@@ -10,7 +10,8 @@ public class ImageRatingOrm : OrmBaseModel
     {
         return new()
         {
-            
+            Rating = Rating,
+            DateCreated = CreationDate
         };
     }
 

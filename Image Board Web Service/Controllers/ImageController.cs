@@ -51,7 +51,7 @@ public class ImageController : ControllerBase
         return NotFound($"There is not a file with the ID {id}");
     }
 
-    [HttpPut("")]
+    [HttpPut("new")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult PutImage(IFormFile file)
     {
