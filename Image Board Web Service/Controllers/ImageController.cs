@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Image_Board_Web_Service.Controllers;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/images")]
 public class ImageController : ControllerBase
 {
     [HttpGet("{id}")]
@@ -51,7 +51,7 @@ public class ImageController : ControllerBase
         return NotFound($"There is not a file with the ID {id}");
     }
 
-    [HttpPut("new")]
+    [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult PutImage(IFormFile file)
     {
@@ -72,7 +72,7 @@ public class ImageController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete("{id}/delete")]
+    [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult DeleteImage(int id)

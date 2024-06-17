@@ -7,17 +7,17 @@ using Microsoft.EntityFrameworkCore;
 namespace Image_Board_Web_Service.Controllers;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/images/{imageId}/ratings")]
 public class ImageReviewController : ControllerBase
 {
-    [HttpGet("{id}/ratings")]
+    [HttpGet]
     [ProducesResponseType<List<ImageRatingDto>>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult GetImageRatings(int id)
+    public IActionResult GetImageRatings(int imageId)
     {
         using LocalDatabaseController database = new();
 
-        ImageOrm? loadedImage = database.Images.Include(selectedImage => selectedImage.Ratings).Where(selectedImage => selectedImage.Id == id).FirstOrDefault();
+        ImageOrm? loadedImage = database.Images.Include(selectedImage => selectedImage.Ratings).Where(selectedImage => selectedImage.Id == imageId).FirstOrDefault();
 
         if (loadedImage != null)
         {
@@ -31,17 +31,17 @@ public class ImageReviewController : ControllerBase
             return Ok(imageRatings);
         }
 
-        return NotFound($"There is not a file with the ID {id}");
+        return NotFound($"There is not a file with the ID {imageId}");
     }
 
-    [HttpGet("{id}/comments")]
+    [HttpGet("comments")]
     [ProducesResponseType<List<ImageRatingDto>>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult GetImageComments(int id)
+    public IActionResult GetImageComments(int imageId)
     {
         using LocalDatabaseController database = new();
 
-        ImageOrm? loadedImage = database.Images.Include(selectedImage => selectedImage.Comments).Where(selectedImage => selectedImage.Id == id).FirstOrDefault();
+        ImageOrm? loadedImage = database.Images.Include(selectedImage => selectedImage.Comments).Where(selectedImage => selectedImage.Id == imageId).FirstOrDefault();
 
         if (loadedImage != null)
         {
@@ -55,17 +55,17 @@ public class ImageReviewController : ControllerBase
             return Ok(imageComments);
         }
 
-        return NotFound($"There is not a file with the ID {id}");
+        return NotFound($"There is not a file with the ID {imageId}");
     }
 
-    [HttpPost("{id}/ratings/new/{score}")]
+    [HttpPost("{rating}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult PostImageRating(int id, int rating)
+    public IActionResult PostImageRating(int imageId, int rating)
     {
         using LocalDatabaseController database = new();
 
-        ImageOrm? loadedImage = database.Images.Where(selectedImage => selectedImage.Id == id).FirstOrDefault();
+        ImageOrm? loadedImage = database.Images.Where(selectedImage => selectedImage.Id == imageId).FirstOrDefault();
 
         if (loadedImage != null)
         {
@@ -81,17 +81,17 @@ public class ImageReviewController : ControllerBase
             return Ok();
         }
 
-        return NotFound($"There is not a file with the ID {id}");
+        return NotFound($"There is not a file with the ID {imageId}");
     }
 
-    [HttpPost("{id}/comments/new/{comment}")]
+    [HttpPost("comments/{comment}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult PostImageComment(int id, string comment)
+    public IActionResult PostImageComment(int imageId, string comment)
     {
         using LocalDatabaseController database = new();
 
-        ImageOrm? loadedImage = database.Images.Where(selectedImage => selectedImage.Id == id).FirstOrDefault();
+        ImageOrm? loadedImage = database.Images.Where(selectedImage => selectedImage.Id == imageId).FirstOrDefault();
 
         if (loadedImage != null)
         {
@@ -107,6 +107,6 @@ public class ImageReviewController : ControllerBase
             return Ok();
         }
 
-        return NotFound($"There is not a file with the ID {id}");
+        return NotFound($"There is not a file with the ID {imageId}");
     }
 }
